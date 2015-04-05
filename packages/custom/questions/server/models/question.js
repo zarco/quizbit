@@ -1,5 +1,7 @@
 'use strict';
 
+var random = require('mongoose-simple-random');
+
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
@@ -16,6 +18,8 @@ var QuestionSchema = new Schema({
   },
   choices: [String]
 });
+
+QuestionSchema.plugin(random);
 
 
 QuestionSchema.statics.load = function(id, cb) {

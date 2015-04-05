@@ -1,15 +1,16 @@
 {
   "name": "questions",
   "version": "0.0.1",
-  "description": "Some description of questions",
+  "description": "Questions for quizes",
   "author": {
-    "name": "mean scaffold"
+    "name": "Carlos Zarco"
   },
   "mean": "0.4.3",
   "engines": {
     "node": "0.10.x",
     "npm": "1.4.x"
   },
-  "dependencies": {},
-  "license": "MIT"
+  "dependencies": {
+    "mongoose-simple-random": "0.3.0"
+  }
 }

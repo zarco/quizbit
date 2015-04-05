@@ -61,6 +61,16 @@ exports.show = function(req, res) {
   res.json(req.question);
 };
 
+exports.random = function(req, res) {
+  Question.findRandom({}, {}, { skip: 10, limit: 10, count: 5 }, function(err, questions) {
+    if (err) {
+      return res.status(500).json({
+        error: 'Cannot list the questions'
+      });
+    }
+    res.json(questions);
+  });
+};
 
 exports.all = function(req, res) {
   Question.find().exec(function(err, questions) {
