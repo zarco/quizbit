@@ -1,27 +1,38 @@
+
 <style type="text/css">
-.correct{
-  color: red;
-}
-.incorrect{
-  color: green;
+#evaluation{
+  position: fixed; 
+  top: 40px; 
+  right: 65px;
+  background: #428bca;
 }
 </style>
+
 <div data-ng-controller="QuestionsController"  data-ng-init="findRandom()">
   <h1>Questions</h1>
+  <pre>Question: {{bigCurrentPage}} / {{numPages}}</pre>
   <form name="quizForm" data-ng-submit="evaluateQuiz()">
     <div data-ng-repeat="question in questions">
 
+      <div ng-show="bigCurrentPage === $index+1">
         <h3> {{ question.question }} </h3>
-        <div data-ng-repeat="choice in question.choices">
-          <input type="radio" ng-model="question.selected" value="{{ choice[0] }}">  {{ choice }}
-        </div>
+          <div class="list-group" data-ng-repeat="choice in question.choices">
+            <div class="list-group-item list-group-item-info">
+              <input type="radio" ng-model="question.selected" value="{{ choice[0] }}"/> {{ choice }}
+            </div>
+          </div>
+      </div>
 
     </div>
+    <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>  
     <br/>
     <button type="submit" class="btn btn-primary">Evaluar</button>
   </form>
+  
+
+
   <br/>
-  <div data-ng-show="evaluated">
+  <div id="evaluation" ng-animate="'animate'" data-ng-show="evaluated">
     <h2> Tu resultado es {{ result }}</h2>
   </div>
 </div>

@@ -3,6 +3,16 @@
 angular.module('mean.questions').controller('QuestionsController', ['$scope', '$stateParams', '$location', 'Global', 'Questions',
   function($scope, $stateParams, $location, Global, Questions) {
     $scope.global = Global;
+
+    $scope.setPage = function (pageNo) {
+       $scope.bigCurrentPage = pageNo;
+    };
+
+    $scope.maxSize = 10;
+    $scope.bigTotalItems = 100;
+    $scope.bigCurrentPage = 1;
+
+
     $scope.find = function() {
       Questions.query(function(questions) {
         $scope.questions = questions;
@@ -24,6 +34,7 @@ angular.module('mean.questions').controller('QuestionsController', ['$scope', '$
 		});
 	    $scope.evaluated = true;
     };
+
 
   }
 ]);
