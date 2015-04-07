@@ -5,6 +5,14 @@ var random = require('mongoose-simple-random');
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
+var ChoiceSchema = new Schema({
+  choice: {
+    type: String
+  },
+  correct: {
+    type: Boolean
+  }
+});
 
 var QuestionSchema = new Schema({
   question: {
@@ -16,7 +24,7 @@ var QuestionSchema = new Schema({
     type: String,
     required: true
   },
-  choices: [String]
+  choices: [ChoiceSchema]
 });
 
 QuestionSchema.plugin(random);

@@ -6,6 +6,15 @@
   right: 65px;
   background: #428bca;
 }
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
 </style>
 
 <div data-ng-controller="QuestionsController"  data-ng-init="findRandom()">
@@ -16,9 +25,9 @@
 
       <div ng-show="bigCurrentPage === $index+1">
         <h3> {{ question.question }} </h3>
-          <div class="list-group" data-ng-repeat="choice in question.choices">
-            <div class="list-group-item list-group-item-info">
-              <input type="radio" ng-model="question.selected" value="{{ choice[0] }}"/> {{ choice }}
+          <div class="list-group" data-ng-repeat="choice in question.choices track by $index">
+            <div ng-class="choice.class" class="list-group-item list-group-item-info">
+              <input type="radio" ng-model="question.selected" ng-value="choice"/> {{ choice.choice }}
             </div>
           </div>
       </div>

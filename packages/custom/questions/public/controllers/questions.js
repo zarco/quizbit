@@ -13,12 +13,6 @@ angular.module('mean.questions').controller('QuestionsController', ['$scope', '$
     $scope.bigCurrentPage = 1;
 
 
-    $scope.find = function() {
-      Questions.query(function(questions) {
-        $scope.questions = questions;
-      });
-    };
-
     $scope.findRandom = function() {
       Questions.random(function(questions) {
         $scope.questions = questions;
@@ -28,13 +22,19 @@ angular.module('mean.questions').controller('QuestionsController', ['$scope', '$
     $scope.evaluateQuiz = function() {
     	$scope.result = 0;
     	angular.forEach($scope.questions, function(q, key) {
-		  if(q.answer === q.selected){
-    			$scope.result += 1;
-    		}
-		});
+        angular.forEach(q.choices, function(choice, key){
+          if(choice.correct){
+            choice.class = 'green';
+            if(choice === q.selected){
+              $scope.result += 1;
+            }
+          }else{
+            choice.class = 'red';
+          }
+        });
+		  });
 	    $scope.evaluated = true;
     };
-
-
+ 
   }
 ]);
